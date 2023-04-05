@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -eu
+
+readonly source="/home/short"
+readonly localTargetUUID="7a4bc99f-0d84-42de-9896-51d875bf6d8c"
+readonly localTargetFolder="restic"
+
+source "${HOME}/.secrets/backup-repo-pass"
+
+excludeFile=$(mktemp)
+cat << 'EOF' > "${excludeFile}"
+$HOME/*
+
+!$HOME/bin
+
+!$HOME/Downloads
+!$HOME/Desktop
+!$HOME/Pictures
+!$HOME/Applications
+!$HOME/Videos
+!$HOME/Music
+!$HOME/Projects
+
+!$HOME/Documents
+$HOME/Documents/ISO/
+
+# SSH
+!$HOME/.ssh
+
+# VSCode
+!$HOME/.config/Code/User
+
+# Minio Client
+!$HOME/.minio/config.json
+
+# Secrets
+!$HOME/.secrets/*.gpg
+EOF
+
+# ## Handle local backup
+mountPoint="";
+if ! mountPoint="$(findmnt --source "UUID=${localTargetUUID}" --output target --noheadings --first-only)"; then
+  logger -it -- "Failed to find mountpoint of local target; Skipping local archive."
+else
+
+  export RESTIC_REPOSITORY="${mountPoint}/${localTargetFolder}"
+
+  restic \
+  backup \
+  "${source}" \
+  --exclude-caches \
+  --exclude-file "${excludeFile}" \
+  --one-file-system \
+  --with-atime \
+  --cleanup-cache true
+
+  restic forget --keep-weekly 4 --keep-yearly 4 --keep-daily 7
+  restic prune
+
+fi
+
+export RESTIC_REPOSITORY="s3:https://s3.us-west-000.backblazeb2.com/shortcord-backups/restic/maus"
+source "${HOME}/.secrets/backup-b2"
+
+restic \
+backup \
+"${source}" \
+--exclude-caches \
+--exclude-file "${excludeFile}" \
+--one-file-system \
+--with-atime \
+--limit-upload "1220" \
+--cleanup-cache true
+
+restic forget --keep-weekly 4 --keep-yearly 4 --keep-daily 7
+restic prune
+
+if ! rm "${excludeFile}"; then
+  logger -it -- "Failed to delete temp exclude file: ${excludeFile}"
+fi
