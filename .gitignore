@@ -1,3 +1,3 @@
 .*.swp
-/vim
-!/vim/autoload/plug.vim
+dotfiles/vim
+!dotfiles/vim/autoload/plug.vim
