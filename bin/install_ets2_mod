@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mv -v "${1}" "${HOME}/.local/share/Euro Truck Simulator 2/mod/";
