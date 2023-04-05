@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+autoload -U compinit && compinit -D 2>&1 >/dev/null
+autoload -U compaudit && compaudit 2>&1 >/dev/null
+autoload -U promptinit && promptinit 2>&1 >/dev/null
+autoload -U colors && colors 2>&1 >/dev/null
+
+setopt no_automenu
+setopt bashautolist
+setopt interactive_comments
+setopt histignorespace
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export SHELL="$(which zsh)"
+export EDITOR="$(which vim)"
+
+export PATH=$PATH:/home/short/bin
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+alias open="xdg-open &> /dev/null"
+alias ip6="ip -c -6"
+alias ip="ip -c"
+alias watch="watch --color"
+alias date3339="date --rfc-3339=date"
+alias mann="BROWSER=firefox man --html"
+alias code="vscodium --new-window"
+
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    tmux attach || tmux >/dev/null 2>&1
+fi
