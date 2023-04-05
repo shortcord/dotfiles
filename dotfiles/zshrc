@@ -15,8 +15,11 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export SHELL="$(which zsh)"
 export EDITOR="$(which vim)"
 
-export PATH=$PATH:/home/short/bin
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+export PATH="${PATH}:${HOME}/.bin"
+export PATH="${KREW_ROOT:-${HOME}/.krew}/bin:${PATH}"
+export PATH="${PATH}:${HOME}/.linkerd2/bin"
 
 alias open="xdg-open &> /dev/null"
 alias ip6="ip -c -6"
