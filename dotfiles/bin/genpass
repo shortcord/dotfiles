@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -e;
+#
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -f|--format)
+        format="$2"
+        shift # past argument
+        shift # past value
+    ;;
+    -l|--length)
+        length="$2"
+        shift # past argument
+        shift # past value
+    ;;
+    -h|--help)
+        echo "-f|--format (base64|hex); defaults to base64"
+        echo "-l|--length int; length of generated password, defaults to 24"
+        exit 0;
+    ;;
+    -*|--*)
+        echo "Unknown option $1"
+        exit 1
+    ;;
+    *)
+        POSITIONAL_ARGS+=("$1") # save positional arg
+        shift # past argument
+    ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+openssl rand "-${format:-"base64"}" "${length:-"24"}"%
