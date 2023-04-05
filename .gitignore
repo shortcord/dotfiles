@@ -1,3 +1,6 @@
 .*.swp
 dotfiles/vim
 !dotfiles/vim/autoload/plug.vim
+
+dotfiles/secrets/*
+!dotfiles/secrets/*.pgp
