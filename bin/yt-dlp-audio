@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-yt-dlp "${1}" -f "ba" --extract-audio --audio-format=mp3 -o "%(uploader)s/%(title)s.%(ext)s" --embed-thumbnail --embed-metadata;
