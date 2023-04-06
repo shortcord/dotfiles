@@ -4,3 +4,5 @@ dotfiles/vim
 
 dotfiles/secrets/*
 !dotfiles/secrets/*.gpg
+
+dotfiles/oh-my-zsh/plugins/zsh-autosuggestions
