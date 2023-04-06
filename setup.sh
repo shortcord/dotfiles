@@ -28,12 +28,12 @@ for config_file in "${config_content[@]}"; do
 	ln -s "$(realpath ${config_file})" "${target}"
 done
 
-readonly secrets=(.secrets/*.gpg)
+readonly secrets=(./dotfiles/secrets/*.gpg)
 
 for secret in "${secrets[@]}"; do
 	name="$(basename ${secret})"
 	echo "Decrypting secret ${name}"
-	gpg --output ".secrets/${name%".gpg"}" --decrypt --yes "${secret}"
+	gpg --output "./dotfiles/secrets/${name%".gpg"}" --decrypt --yes "${secret}"
 done
 
 vim +PlugInstall +PlugUpdate +q +q
