@@ -34,4 +34,4 @@ done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
-openssl rand "-${format:-"base64"}" "${length:-"24"}"%
+openssl rand "-${format:-"base64"}" "${length:-"24"}"
