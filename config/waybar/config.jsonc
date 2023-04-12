@@ -1,5 +1,5 @@
 {
-    "output": "DP-2",
+    //"output": "DP-2",
     "layer": "top",
     "position": "top",
     "modules-left": [
@@ -55,8 +55,17 @@
     "cpu": {
         "interval": 1,
         "format": "{icon}",
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-   },
+        "format-icons": [
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+        ]
+    },
     "memory": {
         "format": "{}% "
     },
@@ -103,7 +112,11 @@
     "wireplumber": {
         "format": "{volume}% {icon}",
         "format-muted": "",
-        "format-icons": ["", "", ""]
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
     }
     // "image/album-art": {
     //     "size": 32,
