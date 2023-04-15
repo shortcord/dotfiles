@@ -7,3 +7,6 @@
 [submodule "oh-my-zsh-plugins/zsh-autosuggestions"]
 	path = oh-my-zsh-plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "config/mpv/Anime4K"]
+	path = config/mpv/Anime4K
+	url = https://github.com/bloc97/Anime4K.git
