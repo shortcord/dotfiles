@@ -12,7 +12,7 @@ for dotfile in "${dotfiles[@]}"; do
 	target="${HOME}/.$(basename "${dotfile}")"
 	
 	if test -e "${target}" || test -h "${target}"; then
-		rm "${target}"
+		rm -rf "${target}"
   	fi
 
 	echo "symlinking \"${dotfile}\" to \"${target}\""
@@ -23,7 +23,7 @@ for config_file in "${config_content[@]}"; do
   	target="${HOME}/.config/$(basename "${config_file}")"
 
   	if test -e "${target}" || test -h "${target}"; then
-	    rm "${target}"
+	    rm -rf "${target}"
   	fi
 
   	echo "symlinking \"${config_file}\" to \"${target}\""
@@ -34,7 +34,7 @@ for omz_plugin in "${omz_plugins[@]}"; do
   	target="${HOME}/.oh-my-zsh/plugins/$(basename "${omz_plugin}")"
 
 	if test -e "${target}" || test -h "${target}"; then
-		rm "${target}"
+		rm -rf "${target}"
 	fi
 
 	echo "symlinking \"${omz_plugin}\" to \"${target}\""
