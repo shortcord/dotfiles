@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Launch Hyprland on login of tty1
+
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+  exec Hyprland;
+  exit;
+fi;
