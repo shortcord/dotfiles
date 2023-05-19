@@ -6,7 +6,7 @@
         "tray"
     ],
     "modules-right": [
-        "custom/spotify",
+        "custom/music",
         "wireplumber",
         "temperature#gpu",
         "temperature#cpu",
@@ -102,21 +102,14 @@
     "tray": {
         "spacing": 10
     },
-    "custom/spotify": {
-        "format": " {}",
+    "custom/music": {
+        "format": "{}",
         "max-length": 40,
-        "interval": 30,
-        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
-        "exec-if": "pgrep spotify"
+        "interval": 2,
+        "exec": "$HOME/.config/waybar/media_player.sh 2> /dev/null"
     },
     "wireplumber": {
-        "format": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": [
-            "",
-            "",
-            ""
-        ]
+        "format": "{volume}% {icon}"
     }
     // "image/album-art": {
     //     "size": 32,

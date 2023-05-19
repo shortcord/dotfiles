@@ -22,7 +22,7 @@ window#waybar {
 #tray,
 #mode,
 #temperature {
-    padding: 0 3px;
+    padding: 0 2px;
     margin: 0 2px;
 }
 
@@ -67,6 +67,7 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#custom-spotify {
-    color: rgb(102, 220, 105);
+#custom-music {
+    padding: 0 5px;
+    color: rgb(255, 255, 255);
 }

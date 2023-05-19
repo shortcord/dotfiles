@@ -10,8 +10,8 @@ album_art=$(playerctl --player ${player_name} metadata mpris:artUrl)
 
 if [[ -z $album_art ]]; then
     # spotify is dead, we should die to.
-    if [[ -e "${cover_location}" ]];
-     rm "${cover_location}"
+    if [[ -e "${cover_location}" ]]; then
+        rm "${cover_location}"
     fi
     exit
 fi

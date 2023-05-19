@@ -1,13 +1,26 @@
 #!/usr/bin/env bash
+set -eu
 
 ## Use playerctl status --list-all to find the correct player
 ## sometimes chrome is listed as a media player
-readonly player_name="spotify" 
+readonly primaryPlayer="rhythmbox"
+readonly secondaryPlayer="spotify"
 
-player_status=$(playerctl status --player=${player_name} 2> /dev/null)
+playerStatus=""
+songString=""
 
-if [ "$player_status" = "Playing" ]; then
-    echo "$(playerctl metadata artist --player=${player_name}) - $(playerctl metadata title --player=${player_name})"
-elif [ "$player_status" = "Paused" ]; then
-    echo " $(playerctl metadata artist --player=${player_name}) - $(playerctl metadata title --player=${player_name})"
+primaryStatus=$(playerctl status --player=${primaryPlayer} 2> /dev/null)
+secondaryStatus=$(playerctl status --player=${secondaryPlayer} 2> /dev/null)
+
+# We short to the primary player regardless if others are playing
+if [[ "${primaryStatus}" == "Playing" ]]; then
+    songString=$(playerctl --player=${primaryPlayer} metadata --format="{{album}} - {{artist}}");
+elif [[ "${secondaryStatus}" == "Playing" ]]; then
+    songString=$(playerctl --player=${secondaryPlayer} metadata --format="{{album}} - {{artist}}");
+fi
+
+if [[ "${primaryStatus}" == "Playing" || "${secondaryPlayer}" == "Playing" ]]; then
+    echo "${songString}"
+else 
+    echo ""
 fi
