@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eux
+
+readonly date="$(date --rfc-3339=date)"
+readonly source="${1}"
+readonly target="storage-owo-systems/shortcord-photos-public/uploads/${date}"
+
+echo "Copying ${source} to ${target}/"
+mc cp "${source}" "${target}/"
+
+echo "URL: https://storage.owo.systems/shortcord-photos-public/uploads/${date}/${source}"
