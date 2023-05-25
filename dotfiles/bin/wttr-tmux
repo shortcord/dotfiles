@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+curl -s 'wttr.in/kbos?format="%C+%h+%t+%f"&m'
