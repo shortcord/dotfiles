@@ -155,6 +155,5 @@ bar {
 }
 
 
-exec --no-startup-id xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144 --output DisplayPort-2 --mode 1920x1080 --rate 144
 exec --no-startup-id feh --bg-fill ~/Pictures/cherry_blossom_by_tomprante-d8shzqg.jpg
 exec --no-startup-id betterlockscreen --update ~/Pictures/cherry_blossom_by_tomprante-d8shzqg.jpg
