@@ -1,11 +1,26 @@
 #!/usr/bin/env bash
-set -eux
+set -eu
 
 readonly date="$(date --rfc-3339=date)"
 readonly source="${1}"
 readonly target="storage-owo-systems/shortcord-photos-public/uploads/${date}"
+readonly uriStub="https://storage.owo.systems/shortcord-photos-public/uploads/"
 
+baseFilename=$(basename -- "${source}")
+filename="${baseFilename%.*}"
+temp=$(mktemp)
+
+# Generate "thumbnail", smaller filesize image
+# this is ugly, don't copy, pls2use traps
+echo "Generating jpg"
+magick "${source}" JPG:- > "${temp}"
+echo "Uploading jpg"
+mc cp "${temp}" "${target}/${filename}-thumb.jpg"
+rm "${temp}"
+
+# Upload full image
 echo "Copying ${source} to ${target}/"
 mc cp "${source}" "${target}/"
 
-echo "URL: https://storage.owo.systems/shortcord-photos-public/uploads/${date}/${source}"
+# shove it into the clipboard, should be a markdown link with the thumbnail image as the text
+echo "[![AltTextTBD](${uriStub}/${date}/${source}-thumb.jpg)](${uriStub}/${date}/${source})" | xclip -selection clipboard -t text/plain
