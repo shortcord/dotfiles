@@ -1,0 +1,44 @@
+#!/usr/bin/env nix-shell
+#! nix-shell -p playerctl curl imagemagick -i bash
+# shellcheck shell=bash
+set -eu
+
+readonly player="spotify"
+
+function clean {
+  echo "Cleaning up"
+  if [[ -f "Snip_Artist.txt" ]]; then
+    rm "Snip_Artist.txt"
+  fi
+
+  if [[ -f "Snip_Track.txt" ]]; then
+    rm "Snip_Track.txt"
+  fi
+
+  if [[ -f "Snip_Artwork.jpg" ]]; then
+    rm "Snip_Artwork.jpg"
+  fi
+}
+clean
+trap clean EXIT
+
+while read -r line; do
+  currentLineKey="$(echo "${line}" | awk '{print $2}')"
+  case "${currentLineKey}" in
+    "xesam:artist" )
+      artist="$(echo "${line}" | awk '{print $3}')"
+      echo "Updating Artist: ${artist}"
+      echo "${artist}" > Snip_Artist.txt
+    ;;
+    "xesam:title" )
+      title="$(echo "${line}" | awk '{print $3}')"
+      echo "Updating Title: ${title}"
+      echo "${title}" > Snip_Track.txt
+    ;;
+    "mpris:artUrl" )
+      echo "Updating Artwork"
+      url=$(echo "${line}" | awk '{print $3}')
+      curl -sfL "${url}" | magick - ./Snip_Artwork.jpg
+    ;;
+  esac
+done < <(playerctl --player=${player} metadata --follow)
