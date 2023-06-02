@@ -17,6 +17,7 @@ setopt interactive_comments
 setopt histignorespace
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 export SHELL="$(which zsh)"
 export EDITOR="$(which vim)"
