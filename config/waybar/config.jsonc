@@ -10,7 +10,7 @@
         "wireplumber",
         "temperature#gpu",
         "temperature#cpu",
-        "cpu",
+//        "cpu",
         "memory",
         "network",
         "clock"

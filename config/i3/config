@@ -49,9 +49,8 @@ bindsym $mod+l exec betterlockscreen --lock dim --off 15
 
 # start a terminal
 bindsym $mod+c exec alacritty
-
 bindsym $mod+e exec xfe
-bindsym $mod+f exec firefox
+bindsym $mod+f exec nixGL firefox
 
 ## Screenshots
 bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -160,8 +159,14 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status
+        tray_output DisplayPort-0
+        tray_output DisplayPort-2
 }
 
+# Window Border
+default_border none
+
+focus_follows_mouse yes
 
 exec --no-startup-id feh --bg-fill ~/Pictures/cherry_blossom_by_tomprante-d8shzqg.jpg
 exec --no-startup-id betterlockscreen --update ~/Pictures/cherry_blossom_by_tomprante-d8shzqg.jpg
