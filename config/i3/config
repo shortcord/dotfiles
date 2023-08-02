@@ -26,6 +26,9 @@ exec --no-startup-id dex --autostart --environment i3
 # Set compose key to caps; caps is a useless key anyway
 exec --no-startup-id setxkbmap -option compose:caps
 
+# Prevent windows from stealing focus
+focus_on_window_activation none
+
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -62,7 +65,7 @@ bindsym $mod+q kill
 # bindsym $mod+Shift+F12 exec --no-startup-id xkill
 
 # start rofi (a program launcher)
-bindsym $mod+space exec "pkill rofi || rofi -show drun"
+bindsym $mod+space exec "pkill rofi || rofi -show drun -mode drun  -theme Arc-Dark -font 'hack 10' -show-icons"
 
 # change focus
 bindsym $mod+Left focus left
