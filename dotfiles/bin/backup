@@ -37,6 +37,22 @@ $HOME/Documents/ISO/
 !$HOME/.secrets/*.gpg
 EOF
 
+export RESTIC_REPOSITORY="s3:storage.owo.systems/shortcord-backups/restic/$(hostname)"
+source "${HOME}/.secrets/backup-b2"
+
+restic \
+backup \
+"${source}" \
+--exclude-caches \
+--exclude-file "${excludeFile}" \
+--one-file-system \
+--with-atime \
+--limit-upload "1220" \
+--cleanup-cache true
+
+restic forget --keep-weekly 4 --keep-yearly 4 --keep-daily 7
+restic prune
+
 # ## Handle local backup
 mountPoint="";
 if ! mountPoint="$(findmnt --source "UUID=${localTargetUUID}" --output target --noheadings --first-only)"; then
@@ -59,21 +75,6 @@ else
 
 fi
 
-export RESTIC_REPOSITORY="s3:https://storage.owo.systems/shortcord-backups/restic/$(hostname)"
-source "${HOME}/.secrets/backup-b2"
-
-restic \
-backup \
-"${source}" \
---exclude-caches \
---exclude-file "${excludeFile}" \
---one-file-system \
---with-atime \
---limit-upload "1220" \
---cleanup-cache true
-
-restic forget --keep-weekly 4 --keep-yearly 4 --keep-daily 7
-restic prune
 
 if ! rm "${excludeFile}"; then
   logger -it -- "Failed to delete temp exclude file: ${excludeFile}"
