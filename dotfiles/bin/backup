@@ -40,6 +40,8 @@ EOF
 export RESTIC_REPOSITORY="s3:storage.owo.systems/shortcord-backups/restic/$(hostname)"
 source "${HOME}/.secrets/backup-b2"
 
+restic unlock
+
 restic \
 backup \
 "${source}" \
@@ -60,7 +62,7 @@ if ! mountPoint="$(findmnt --source "UUID=${localTargetUUID}" --output target --
 else
 
   export RESTIC_REPOSITORY="${mountPoint}/${localTargetFolder}"
-
+  restic unlock
   restic \
   backup \
   "${source}" \
