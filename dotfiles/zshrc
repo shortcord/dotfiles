@@ -19,7 +19,7 @@ setopt histignorespace
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
 
-export XDG_DATA_DIRS="${HOME}/.nix-profile/share/:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/"
+export XDG_DATA_DIRS="${HOME}/.nix-profile/share/:/home/short/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/"
 
 export SHELL="$(which zsh)"
 export EDITOR="$(which vim)"
@@ -38,6 +38,8 @@ alias watch="watch --color"
 alias date3339="date --rfc-3339=date"
 alias mann="BROWSER=firefox man --html"
 alias code="vscodium --new-window"
+alias ffmpreg="ffmpeg"
+alias dog="dig"
 
 ##                                                                            Don't attach to a tmux session if in vscode context
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ] && [ -z "${VSCODE_INJECTION}" ]; then
