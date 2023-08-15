@@ -37,7 +37,7 @@ alias ip="ip -c"
 alias watch="watch --color"
 alias date3339="date --rfc-3339=date"
 alias mann="BROWSER=firefox man --html"
-alias code="vscodium --new-window"
+alias code="code --new-window"
 alias ffmpreg="ffmpeg"
 alias dog="dig"
 
