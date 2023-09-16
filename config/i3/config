@@ -65,7 +65,7 @@ bindsym $mod+q kill
 # bindsym $mod+Shift+F12 exec --no-startup-id xkill
 
 # start rofi (a program launcher)
-bindsym $mod+space exec "pkill rofi || rofi -show drun -mode drun  -theme Arc-Dark -font 'hack 10' -show-icons"
+bindsym $mod+space exec --no-startup-id rofi -show drun -mode drun  -theme Arc-Dark -font 'hack 10' -show-icons
 
 # change focus
 bindsym $mod+Left focus left
@@ -100,10 +100,10 @@ set $ws7 "7"
 set $ws8 "8"
 
 # lock workspaces to their monitors
-workspace $ws1 output DisplayPort-0
-workspace $ws2 output DisplayPort-0
-workspace $ws3 output DisplayPort-0
-workspace $ws4 output DisplayPort-0
+workspace $ws1 output DisplayPort-1
+workspace $ws2 output DisplayPort-1
+workspace $ws3 output DisplayPort-1
+workspace $ws4 output DisplayPort-1
 workspace $ws5 output DisplayPort-2
 workspace $ws6 output DisplayPort-2
 workspace $ws7 output DisplayPort-2
@@ -162,7 +162,7 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status
-        tray_output DisplayPort-0
+        tray_output DisplayPort-1
         tray_output DisplayPort-2
 }
 
