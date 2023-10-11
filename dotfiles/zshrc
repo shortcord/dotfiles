@@ -39,6 +39,7 @@ alias date3339="date --rfc-3339=date"
 alias mann="BROWSER=firefox man --html"
 alias code="code --new-window"
 alias ffmpreg="ffmpeg"
+alias ffprobe="ffprobe -hide_banner"
 alias dog="dig"
 
 ##                                                                            Don't attach to a tmux session if in vscode context
