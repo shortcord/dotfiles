@@ -24,7 +24,7 @@ font pango:DejaVu Sans Mono 8
 exec --no-startup-id dex --autostart --environment i3
 
 # Set compose key to caps; caps is a useless key anyway
-exec --no-startup-id setxkbmap -option compose:caps
+# exec --no-startup-id setxkbmap -option compose:caps
 
 # Prevent windows from stealing focus
 focus_on_window_activation none
@@ -51,7 +51,7 @@ bindsym $mod+l exec betterlockscreen --lock dim --off 15
 
 # start a terminal
 bindsym $mod+c exec alacritty
-bindsym $mod+e exec xfe
+bindsym $mod+e exec --no-startup-id xfe
 bindsym $mod+f exec nixGL firefox
 
 ## Screenshots
@@ -82,51 +82,131 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+v floating toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Shift+F11 fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
 
+# Left Monitor
+set $wsl1 "1"
+set $wsl2 "2"
+set $wsl3 "3"
+set $wsl4 "4"
+set $wsl5 "5"
+set $wsl6 "6"
+set $wsl7 "7"
+set $wsl8 "8"
+set $wsl9 "9"
+set $wsl10 "10"
+set $wsl11 "11"
+set $wsl12 "12"
+
+# Right Monitor
+set $wsr1 "13"
+set $wsr2 "14"
+set $wsr3 "15"
+set $wsr4 "16"
+set $wsr5 "17"
+set $wsr6 "18"
+set $wsr7 "19"
+set $wsr8 "20"
+set $wsr9 "21"
+set $wsr10 "22"
+set $wsr11 "23"
+set $wsr12 "24"
+
+
+# I seem to hate my fingers
 # lock workspaces to their monitors
-workspace $ws1 output DisplayPort-0
-workspace $ws2 output DisplayPort-0
-workspace $ws3 output DisplayPort-0
-workspace $ws4 output DisplayPort-0
-workspace $ws5 output DisplayPort-1
-workspace $ws6 output DisplayPort-1
-workspace $ws7 output DisplayPort-1
-workspace $ws8 output DisplayPort-1
+# Left Monitor
+workspace $wsl1 output DisplayPort-1
+workspace $wsl2 output DisplayPort-1
+workspace $wsl3 output DisplayPort-1
+workspace $wsl4 output DisplayPort-1
+workspace $wsl5 output DisplayPort-1
+workspace $wsl6 output DisplayPort-1
+workspace $wsl7 output DisplayPort-1
+workspace $wsl8 output DisplayPort-1
+workspace $wsl9 output DisplayPort-1
+workspace $wsl10 output DisplayPort-1
+workspace $wsl11 output DisplayPort-1
+workspace $wsl12 output DisplayPort-1
+
+# Right Monitor
+workspace $wsr1 output DisplayPort-2
+workspace $wsr2 output DisplayPort-2
+workspace $wsr3 output DisplayPort-2
+workspace $wsr4 output DisplayPort-2
+workspace $wsr5 output DisplayPort-2
+workspace $wsr6 output DisplayPort-2
+workspace $wsr7 output DisplayPort-2
+workspace $wsr8 output DisplayPort-2
+workspace $wsr9 output DisplayPort-2
+workspace $wsr10 output DisplayPort-2
+workspace $wsr11 output DisplayPort-2
+workspace $wsr12 output DisplayPort-2
 
 # switch to workspace
-bindsym $mod+F1 workspace number $ws1
-bindsym $mod+F2 workspace number $ws2
-bindsym $mod+F3 workspace number $ws3
-bindsym $mod+F4 workspace number $ws4
-bindsym $mod+F5 workspace number $ws5
-bindsym $mod+F6 workspace number $ws6
-bindsym $mod+F7 workspace number $ws7
-bindsym $mod+F8 workspace number $ws8
+# Left
+bindsym $mod+F1 workspace number $wsl1
+bindsym $mod+F2 workspace number $wsl2
+bindsym $mod+F3 workspace number $wsl3
+bindsym $mod+F4 workspace number $wsl4
+bindsym $mod+F5 workspace number $wsl5
+bindsym $mod+F6 workspace number $wsl6
+bindsym $mod+F7 workspace number $wsl7
+bindsym $mod+F8 workspace number $wsl8
+bindsym $mod+F9 workspace number $wsl9
+bindsym $mod+F10 workspace number $wsl10
+bindsym $mod+F11 workspace number $wsl11
+bindsym $mod+F12 workspace number $wsl12
+
+# Right
+bindsym $mod+mod1+F1 workspace number $wsr1
+bindsym $mod+mod1+F2 workspace number $wsr2
+bindsym $mod+mod1+F3 workspace number $wsr3
+bindsym $mod+mod1+F4 workspace number $wsr4
+bindsym $mod+mod1+F5 workspace number $wsr5
+bindsym $mod+mod1+F6 workspace number $wsr6
+bindsym $mod+mod1+F7 workspace number $wsr7
+bindsym $mod+mod1+F8 workspace number $wsr8
+bindsym $mod+mod1+F9 workspace number $wsr9
+bindsym $mod+mod1+F10 workspace number $wsr10
+bindsym $mod+mod1+F11 workspace number $wsr11
+bindsym $mod+mod1+F12 workspace number $wsr12
+
 
 # move focused container to workspace
-bindsym $mod+Shift+F1 move container to workspace number $ws1
-bindsym $mod+Shift+F2 move container to workspace number $ws2
-bindsym $mod+Shift+F3 move container to workspace number $ws3
-bindsym $mod+Shift+F4 move container to workspace number $ws4
-bindsym $mod+Shift+F5 move container to workspace number $ws5
-bindsym $mod+Shift+F6 move container to workspace number $ws6
-bindsym $mod+Shift+F7 move container to workspace number $ws7
-bindsym $mod+Shift+F8 move container to workspace number $ws8
+# Left
+bindsym $mod+Shift+F1 move container to workspace number $wsl1
+bindsym $mod+Shift+F2 move container to workspace number $wsl2
+bindsym $mod+Shift+F3 move container to workspace number $wsl3
+bindsym $mod+Shift+F4 move container to workspace number $wsl4
+bindsym $mod+Shift+F5 move container to workspace number $wsl5
+bindsym $mod+Shift+F6 move container to workspace number $wsl6
+bindsym $mod+Shift+F7 move container to workspace number $wsl7
+bindsym $mod+Shift+F8 move container to workspace number $wsl8
+bindsym $mod+Shift+F9 move container to workspace number $wsl9
+bindsym $mod+Shift+F10 move container to workspace number $wsl10
+bindsym $mod+Shift+F11 move container to workspace number $wsl11
+bindsym $mod+Shift+F12 move container to workspace number $wsl12
+
+# Right
+bindsym $mod+Shift+mod1+F1 move container to workspace number $wsr1
+bindsym $mod+Shift+mod1+F2 move container to workspace number $wsr2
+bindsym $mod+Shift+mod1+F3 move container to workspace number $wsr3
+bindsym $mod+Shift+mod1+F4 move container to workspace number $wsr4
+bindsym $mod+Shift+mod1+F5 move container to workspace number $wsr5
+bindsym $mod+Shift+mod1+F6 move container to workspace number $wsr6
+bindsym $mod+Shift+mod1+F7 move container to workspace number $wsr7
+bindsym $mod+Shift+mod1+F8 move container to workspace number $wsr8
+bindsym $mod+Shift+mod1+F9 move container to workspace number $wsr9
+bindsym $mod+Shift+mod1+F10 move container to workspace number $wsr10
+bindsym $mod+Shift+mod1+F11 move container to workspace number $wsr11
+bindsym $mod+Shift+mod1+F12 move container to workspace number $wsr12
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -161,11 +241,12 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status
-        tray_output DisplayPort-0
+        tray_output DisplayPort-1
 }
 
 # Window Border
-default_border none
+default_border pixel
+smart_borders on
 
 focus_follows_mouse yes
 
