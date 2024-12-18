@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-mv -v "${1}" "${HOME}/.local/share/Euro Truck Simulator 2/mod/";
+install --compare -D --group short --owner short --mode 0644 "${1}" "${HOME}/.local/share/Euro Truck Simulator 2/mod/"
+rm -v "${1}"

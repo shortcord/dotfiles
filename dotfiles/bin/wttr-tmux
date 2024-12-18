@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-curl -s 'wttr.in/kbos?format="%C+%h+%t+%f"&m'
+curl -s 'wttr.in/kstl?format="%C+%h+%t+%f"&m'

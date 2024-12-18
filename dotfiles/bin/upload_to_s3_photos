@@ -4,10 +4,10 @@ set -eu
 readonly date="$(date --rfc-3339=date)"
 readonly source="${1}"
 readonly target="storage-owo-systems/shortcord-photos-public/uploads/${date}"
-readonly uriStub="https://storage.owo.systems/shortcord-photos-public/uploads/"
+readonly uriStub="https://shortcord-photos-public.storage.owo.systems/uploads"
 
 baseFilename=$(basename -- "${source}")
-filename="${baseFilename%.*}"
+filename="${baseFilename%%.*}"
 temp=$(mktemp)
 
 # Generate "thumbnail", smaller filesize image
@@ -23,4 +23,4 @@ echo "Copying ${source} to ${target}/"
 mc cp "${source}" "${target}/"
 
 # shove it into the clipboard, should be a markdown link with the thumbnail image as the text
-echo "[![AltTextTBD](${uriStub}/${date}/${source}-thumb.jpg)](${uriStub}/${date}/${source})" | xclip -selection clipboard -t text/plain
+wl-copy "[![AltTextTBD](${uriStub}/${date}/${filename}-thumb.jpg)](${uriStub}/${date}/${source})"

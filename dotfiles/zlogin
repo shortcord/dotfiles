@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Launch i3wm on login of tty1
-
-if [[ "$(tty)" == "/dev/tty1" ]]; then
- startx
- exit
-fi
