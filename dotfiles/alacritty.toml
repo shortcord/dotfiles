@@ -1,0 +1,69 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "0x5f5a60"
+blue = "0x838184"
+cyan = "0x9b703f"
+green = "0x323537"
+magenta = "0xc3c3c3"
+red = "0xcda869"
+white = "0xffffff"
+yellow = "0x464b50"
+
+[colors.cursor]
+cursor = "0xa7a7a7"
+text = "0x1e1e1e"
+
+[colors.normal]
+black = "0x1e1e1e"
+blue = "0x7587a6"
+cyan = "0xafc4db"
+green = "0x8f9d6a"
+magenta = "0x9b859d"
+red = "0xcf6a4c"
+white = "0xa7a7a7"
+yellow = "0xf9ee98"
+
+[colors.primary]
+background = "0x1e1e1e"
+foreground = "0xa7a7a7"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[font]
+size = 10.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+#family = "Droid Sans Mono"
+family = "Departure Mono"
+#style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[window]
+opacity = 0.9
+blur = true
+dimensions = { columns = 120, lines = 25 }
+dynamic_padding = true
+
+
+[keyboard]
+bindings = [
+	{ key = "B", mods = "Control|Shift", action = "SpawnNewInstance" }
+]
