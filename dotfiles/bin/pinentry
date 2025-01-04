@@ -4,8 +4,9 @@ set -e
 # Set the pinentry program based on if we are in a ssh session or not
 # the fact that this isn't something default in gpg is astronomically stupid
 
-if [[ -z "${SSH_TTY}" ]]; then
-  exec /usr/bin/pinentry-qt "$@"
+
+if [[ "${PINENTRY_USER_DATA}" == "ssh" ]]; then
+    exec /usr/bin/pinentry-curses "$@"
 else
- exec /usr/bin/pinentry-curses "$@"
+    exec /usr/bin/pinentry-qt "$@"
 fi
