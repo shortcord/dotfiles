@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+## script to correct scaling for my k1 se
+
+readonly _xScale="1.003"
+readonly _yScale="0.999"
+readonly _zScale="0.997"
+
+_x="$(echo "${1} * $_xScale" | bc)"
+_y="$(echo "${2} * $_yScale" | bc)"
+_z="$(echo "${3} * $_zScale" | bc)"
+
+
+echo "X:${_x}"
+echo "Y:${_y}"
+echo "Z:${_z}"
