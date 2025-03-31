@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -eu
+
+_defaultMonitorName=""
+if ! _defaultMonitorName=$(jc xrandr | jq --raw-output '.screens[] | .devices[] | select(.is_primary) | .device_name') ; then
+    echo "Failed to find default montior from xrandr"
+    exit 1
+fi
+
+_resWidth=0
+_resHeight=0
+if ! _resWidth=$(jc xrandr | jq --raw-output ".screens[] | .devices[] | select(.device_name == \"${_defaultMonitorName}\") | .resolution_modes[] | select(.frequencies[].is_preferred) | .resolution_width "); then
+    echo "Failed to grab Width"
+    exit 1
+fi
+
+if ! _resHeight=$(jc xrandr | jq --raw-output ".screens[] | .devices[] | select(.device_name == \"${_defaultMonitorName}\") | .resolution_modes[] | select(.frequencies[].is_preferred) | .resolution_height"); then
+    echo "Failed to grab Hight"
+    exit 1
+fi
+
+_refreshHz=0
+if ! _refreshHz=$(jc xrandr | jq --raw-output ".screens[] | .devices[] | select(.device_name == \"${_defaultMonitorName}\") | .resolution_modes[] | select(.frequencies[].is_preferred) | .frequencies[] | .frequency"); then
+    echo "Failed to grab Hight"
+    exit 1
+fi
+
+echo "Default monitor is ${_defaultMonitorName} with ${_resWidth}x${_resHeight}@${_refreshHz}"
+echo "Launching Gamescope with these values"
+
+gamescope --nested-width="${_resWidth}" --nested-height="${_resHeight}" --nested-refresh="${_refreshHz}" "$@"
