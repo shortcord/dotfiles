@@ -48,6 +48,8 @@ alias ffmpreg="ffmpeg"
 alias ffprobe="ffprobe -hide_banner"
 alias dog="dig"
 
+alias headscale="ssh short@ns2.owo.systems -- sudo headscale"
+
 ##                                                                            Don't attach to a tmux session if in vscode context
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ] && [ -z "${VSCODE_INJECTION}" ]; then
     tmux attach \; choose-tree -s || tmux >/dev/null 2>&1
