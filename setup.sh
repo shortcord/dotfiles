@@ -7,6 +7,24 @@ readonly dotfiles=(./dotfiles/*)
 readonly config_content=(./config/*)
 readonly omz_plugins=(./oh-my-zsh-plugins/*)
 readonly secrets=(./dotfiles/secrets/*.gpg)
+readonly fonts=(./fonts/*/*.otf)
+
+for fontFile in "${fonts[@]}"; do
+	target="${HOME}/.local/share/fonts/otf/$(basename "${fontFile}")"
+
+	if [[ ! -d "$(dirname "${target}")" ]]; then
+		mkdir -p "$(dirname "${target}")"
+	fi
+
+	if test -e "${target}" || test -h "${target}"; then
+		rm -rf "${target}"
+  	fi
+
+	echo "symlinking \"${fontFile}\" to \"${target}\""
+	ln -s "$(realpath "${fontFile}")" "${target}"
+done
+
+fc-cache
 
 for dotfile in "${dotfiles[@]}"; do
 	target="${HOME}/.$(basename "${dotfile}")"
