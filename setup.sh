@@ -41,7 +41,7 @@ for config_file in "${config_content[@]}"; do
   	target="${HOME}/.config/$(basename "${config_file}")"
 
   	if test -e "${target}" || test -h "${target}"; then
-	    rm -rf "${target}"
+		rm -rf "${target}"
   	fi
 
   	echo "symlinking \"${config_file}\" to \"${target}\""
