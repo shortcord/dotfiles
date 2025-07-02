@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -eu
+
+readonly _sshUser="short"
+readonly _sshKey="${HOME}/.ssh/id_ed25519"
+readonly _hosts=("router.cloud.shortcord.com" "gateway.lab.shortcord.com")
+
+readonly _targetStub="storage-owo-systems/shortcord-backups/vyos"
+readonly _targetDateStub="$(date "+%y/%m/%d/%H")"
+
+readonly _commandScript="/opt/vyatta/bin/vyatta-op-cmd-wrapper"
+readonly _commandArgs=("show" "configuration" "commands")
+
+for host in "${_hosts[@]}"; do
+  echo "Backing up ${host}"
+  
+  config=""
+  if ! config=$(ssh -i "${_sshKey}" "${_sshUser}@${host}" -- "${_commandScript} ${_commandArgs[*]}"); then
+    echo "Failed to run SSH command on ${host}"
+    exit 1
+  fi
+
+  tempConfig=$(mktemp)
+
+  echo "Uploading config to S3"
+
+  echo "${config}" > "${tempConfig}"
+
+  mc cp "${tempConfig}" "${_targetStub}/${host}/${_targetDateStub}/config.txt"
+
+  rm "${tempConfig}"
+
+  unset config tempConfig
+
+  echo "Backup uploaded to ${_targetStub}/${host}/${_targetDateStub}/config.txt"
+done
