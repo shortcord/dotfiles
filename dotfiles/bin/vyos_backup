@@ -12,17 +12,17 @@ readonly _commandScript="/opt/vyatta/bin/vyatta-op-cmd-wrapper"
 readonly _commandArgs=("show" "configuration" "commands")
 
 for host in "${_hosts[@]}"; do
-  echo "Backing up ${host}"
+  logger -it -- "Backing up ${host}"
   
   config=""
   if ! config=$(ssh -i "${_sshKey}" "${_sshUser}@${host}" -- "${_commandScript} ${_commandArgs[*]}"); then
-    echo "Failed to run SSH command on ${host}"
+    logger -it -- "Failed to run SSH command on ${host}"
     exit 1
   fi
 
   tempConfig=$(mktemp)
 
-  echo "Uploading config to S3"
+  logger -it -- "Uploading config to S3"
 
   echo "${config}" > "${tempConfig}"
 
@@ -32,5 +32,5 @@ for host in "${_hosts[@]}"; do
 
   unset config tempConfig
 
-  echo "Backup uploaded to ${_targetStub}/${host}/${_targetDateStub}/config.txt"
+  logger -it -- "Backup uploaded to ${_targetStub}/${host}/${_targetDateStub}/config.txt"
 done
